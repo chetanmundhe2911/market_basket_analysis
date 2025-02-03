@@ -24,61 +24,7 @@ print("Spark Session Created Successfully!")
 # This mimics multiple tables with different transaction types.
 # You can replace or modify the data below as needed.
 
-# Table 1 Data
-table1_data = {
-    "DS_TRXN_TYPE": ["B2C Payment"] * 20,
-    "DS_RESN_TYPE": [
-        "Business Payment to Customer via API",
-        "Promotion Payment via API",
-        "MMI Transfer to Customer via API",
-        "Salary Payment via API",
-        "Transfer From Bank To Customer via API",
-        "Business Payment To Customer",
-        "Salary Payment",
-        "Business Payment to Customer Withdrawal Charge Paid",
-        "MEP Salary Payment",
-        "HFund Savings to Customer via API",
-        "GlobalPay reversal to customer via API",
-        "Salary payment withdrawal charge paid",
-        "MEP Salary payment withdrawal charge paid",
-        "Promotion Payment",
-        "MEP Promotion Payment",
-        "Business Payment to Customer Withdrawal Charge Paid via API",
-        "Digifarm Business Payment to Customer via API",
-        "Salary Payment Withdrawal Charge Paid via API",
-        "Salary Advance Payment",
-        "Pay Dividend to Registered User"
-    ]
-}
 
-# Table 2 Data
-table2_data = {
-    "DS_TRXN_TYPE": ["Cash In", "Cash In"],
-    "DS_RESN_TYPE": ["Deposit at Agent Till", "Deposit at Agent Store via Web"]
-}
-
-# Table 3 Data
-table3_data = {
-    "DS_TRXN_TYPE": ["Send Money"] * 16,
-    "DS_RESN_TYPE": [
-        "Customer Transfer",
-        "Customer Transfer with OD via STK",
-        "Customer Send to Micro SME Business",
-        "Customer Transfer via USSD",
-        "Customer Send to Micro SME Business with OD",
-        "Customer Transfer with OD Online",
-        "Customer Transfer with OD via USSD",
-        "Micro SME Customer Payment to Customer via API",
-        "Micro SME to Micro SME Payment via API",
-        "Standing Order Customer Transfer",
-        "Customer Transfer via WEB",
-        "Refund from Child to Parent",
-        "Send Money",
-        "Customer Transfer",
-        "Customer Transfer",
-        "Customer Transfer with OD via STK"
-    ]
-}
 
 # Create Pandas DataFrames
 df_table1 = pd.DataFrame(table1_data)
