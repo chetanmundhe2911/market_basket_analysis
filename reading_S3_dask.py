@@ -13,3 +13,33 @@ df.describe().compute()  # Trigger computation for summary statistics
 # Dask can also handle larger-than-memory datasets using out-of-core computation
 
 # 2. PyArrow + Pandas (for efficient file reading)
+import pyarrow.parquet as pq
+import s3fs
+
+# Use s3fs to read data from S3
+fs = s3fs.S3FileSystem(anon=False)
+
+# Read Parquet file from S3 directly
+table = pq.read_table('s3://your-bucket-name/path/to/your-data/*.parquet', filesystem=fs)
+
+# Convert to Pandas DataFrame
+df = table.to_pandas()
+
+# Perform your analysis
+print(df.describe())
+
+
+import pyarrow.parquet as pq
+import s3fs
+
+# Use s3fs to read data from S3
+fs = s3fs.S3FileSystem(anon=False)
+
+# Read Parquet file from S3 directly
+table = pq.read_table('s3://your-bucket-name/path/to/your-data/*.parquet', filesystem=fs)
+
+# Convert to Pandas DataFrame
+df = table.to_pandas()
+
+# Perform your analysis
+print(df.describe())
