@@ -63,4 +63,13 @@ df = mpd.read_parquet('s3://your-bucket-name/path/to/your-data/*.parquet')
 df.head()
 df.describe()
 
+# Sample Code (Using AWS Data Wrangler to Read from S3)
+
+import awswrangler as wr
+
+# Read Parquet file from S3
+df = wr.s3.read_parquet('s3://your-bucket-name/path/to/your-data/*.parquet')
+
+# Perform data analysis
+print(df.describe())
 
