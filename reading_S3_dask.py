@@ -43,3 +43,13 @@ df = table.to_pandas()
 
 # Perform your analysis
 print(df.describe())
+
+import modin.pandas as mpd
+
+# Read CSV/Parquet data from S3 using Modin
+df = mpd.read_parquet('s3://your-bucket-name/path/to/your-data/*.parquet')
+
+# Perform analysis (similar to Pandas API)
+df.head()
+df.describe()
+
