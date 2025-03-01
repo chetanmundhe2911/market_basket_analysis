@@ -73,3 +73,16 @@ df = wr.s3.read_parquet('s3://your-bucket-name/path/to/your-data/*.parquet')
 # Perform data analysis
 print(df.describe())
 
+# 5. Apache Spark with PySpark (for very large-scale data processing)
+from pyspark.sql import SparkSession
+
+# Initialize Spark session
+spark = SparkSession.builder.appName("LargeDataAnalysis").getOrCreate()
+
+# Read Parquet file from S3
+df = spark.read.parquet("s3://your-bucket-name/path/to/your-data/*.parquet")
+
+# Perform transformations or actions on the DataFrame
+df.describe().show()
+
+
