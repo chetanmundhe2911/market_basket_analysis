@@ -39,27 +39,23 @@ ifelse(
     ifelse(
         ${crossPlay} = 'Yes',
         sum(ifelse({Organization_CP} = 'CrossPlay', {tx_count}, NULL)),
-        sum({tx_count})  -- If "No" is selected, sum all transactions
+        sum({tx_count})
     ),
 
     ${MetricToDisplay} = 'Tx Value',
     ifelse(
         ${crossPlay} = 'Yes',
         sum(ifelse({Organization_CP} = 'CrossPlay', {tx_value}, NULL)),
-        sum({tx_value})  -- If "No" is selected, sum all transaction values
+        sum({tx_value})
     ),
 
     ${MetricToDisplay} = 'All',
-    concat(
-        'Unique Users: ', toString(distinct_count(ifelse({Organization_CP} = 'CrossPlay', {nr_sbsc_hash_pii}, NULL))),
-        ', Tx Count: ', toString(sum(ifelse({Organization_CP} = 'CrossPlay', {tx_count}, NULL))),
-        ', Tx Value: ', toString(sum(ifelse({Organization_CP} = 'CrossPlay', {tx_value}, NULL)))
-    ),
+    sum(ifelse({Organization_CP} = 'CrossPlay', {tx_count}, NULL)) + 
+    sum(ifelse({Organization_CP} = 'CrossPlay', {tx_value}, NULL)) + 
+    distinct_count(ifelse({Organization_CP} = 'CrossPlay', {nr_sbsc_hash_pii}, NULL)),
 
-    NULL -- Default return in case no conditions match.
+    NULL
 )
-
-
 
 
 
