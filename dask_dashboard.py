@@ -1,1 +1,83 @@
 
+🎯 Objective
+You are using Dask inside AWS SageMaker JupyterLab and want to view the Dask Dashboard. You tried port forwarding with a token URL but it did not work.
+
+✅ Typical Steps for Dashboard Access
+When running locally, Dask creates a dashboard available at a URL like:
+
+text
+Save
+Copy
+1
+http://localhost:8787/status
+However, AWS SageMaker doesn't natively expose arbitrary ports like 8787, so you must work around that using Jupyter's dask_labextension.
+
+🧰 Recommended Approach: Use dask-labextension in SageMaker JupyterLab
+AWS SageMaker JupyterLab supports Jupyter extensions such as dask-labextension, which allows access to the dashboard inside the notebook interface.
+
+✅ Steps:
+Activate Dask Labextension
+In a SageMaker JupyterLab terminal or cell, install it (if not already):
+
+bash
+Save
+Copy
+1
+2
+pip install dask-labextension --quiet
+jupyter lab build
+Note: jupyter lab build can take some time. If the kernel times out, try running it from a terminal in JupyterLab. 
+
+Start a Dask Cluster via dask.distributed
+In a Jupyter Notebook cell:
+
+python
+Run
+Save
+Copy
+1
+2
+3
+4
+5
+6
+7
+from dask.distributed import Client, LocalCluster
+
+# Create a local cluster with dashboard on port 8787
+cluster = LocalCluster()
+client = Client(cluster)
+
+client
+Running the above code cell should show a dashboard link inline in the notebook, like:
+
+Dask Dashboard: [link] 
+
+Clicking on this should work without needing to port forward.
+
+Use the Dask Dashboard Pane in JupyterLab
+There should be a Dask icon in the left pane (after installing dask-labextension). You can see task streams, progress bars, etc., directly within JupyterLab.
+
+🔁 If You Must Use Port Forwarding (Not Recommended, But Possible)
+If you're running Dask in a SageMaker Studio Kernel App (or notebook instance) and want to expose the dashboard port:
+
+SSH/port-forwarding is not directly supported in SageMaker Studio, so you'd need to have a workaround, such as:
+Using EC2 (not SageMaker) and setting up Dask there
+Or setting up an SSH tunnel via SageMaker notebook instance (not Studio)
+However , for SageMaker Studio, direct port forwarding (as in port 8787) does not work easily due to its way of routing traffic through the Jupyter server kernel gateway. Use the Jupyter Lab Extensions instead.
+
+✅ Summary
+Direct Dashboard (localhost:8787)
+❌
+Not available
+Port forwarding to 8787
+🚫 Likely blocked
+Not reliable
+dask-labextension
++ JupyterLab
+✅
+✅ Recommended Approach
+
+📌 Resources
+dask-labextension
+Dask Distributed: Dashboard Overview
