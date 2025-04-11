@@ -5,10 +5,7 @@ You are using Dask inside AWS SageMaker JupyterLab and want to view the Dask Das
 ✅ Typical Steps for Dashboard Access
 When running locally, Dask creates a dashboard available at a URL like:
 
-text
-Save
-Copy
-1
+
 http://localhost:8787/status
 However, AWS SageMaker doesn't natively expose arbitrary ports like 8787, so you must work around that using Jupyter's dask_labextension.
 
@@ -19,11 +16,6 @@ AWS SageMaker JupyterLab supports Jupyter extensions such as dask-labextension, 
 Activate Dask Labextension
 In a SageMaker JupyterLab terminal or cell, install it (if not already):
 
-bash
-Save
-Copy
-1
-2
 pip install dask-labextension --quiet
 jupyter lab build
 Note: jupyter lab build can take some time. If the kernel times out, try running it from a terminal in JupyterLab. 
@@ -32,17 +24,9 @@ Start a Dask Cluster via dask.distributed
 In a Jupyter Notebook cell:
 
 python
-Run
-Save
-Copy
-1
-2
-3
-4
-5
-6
-7
+```
 from dask.distributed import Client, LocalCluster
+```
 
 # Create a local cluster with dashboard on port 8787
 cluster = LocalCluster()
