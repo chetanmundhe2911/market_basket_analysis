@@ -46,7 +46,7 @@ There should be a Dask icon in the left pane (after installing dask-labextension
 If you're running Dask in a SageMaker Studio Kernel App (or notebook instance) and want to expose the dashboard port:
 
 SSH/port-forwarding is not directly supported in SageMaker Studio, so you'd need to have a workaround, such as:
-Using EC2 (not SageMaker) and setting up Dask there
+Using EC2 (not SageMaker) 
 Or setting up an SSH tunnel via SageMaker notebook instance (not Studio)
 However , for SageMaker Studio, direct port forwarding (as in port 8787) does not work easily due to its way of routing traffic through the Jupyter server kernel gateway. Use the Jupyter Lab Extensions instead.
 
