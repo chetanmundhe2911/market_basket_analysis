@@ -62,6 +62,6 @@ dask-labextension
 ✅
 ✅ Recommended Approach
 
-_____________________________________________________
+#_____________________________________________________
 dask-labextension
 Dask Distributed: Dashboard Overview
