@@ -20,8 +20,7 @@ pip install dask-labextension --quiet
 jupyter lab build
 Note: jupyter lab build can take some time. If the kernel times out, try running it from a terminal in JupyterLab. 
 
-Start a Dask Cluster via dask.distributed
-In a Jupyter Notebook cell:
+
 
 python
 ```
