@@ -2,7 +2,6 @@
 
 You are using Dask inside AWS SageMaker JupyterLab and want to view the Dask Dashboard. You tried port forwarding with a token URL but it did not work.
 
-When running locally, Dask creates a dashboard available at a URL like:
 
 
 http://localhost:8787/status
