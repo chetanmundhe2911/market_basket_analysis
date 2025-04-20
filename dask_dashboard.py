@@ -57,5 +57,4 @@ Not reliable
 dask-labextension
 + JupyterLab
 ✅
-✅ Recommended Approach
 
