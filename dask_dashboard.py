@@ -59,5 +59,3 @@ dask-labextension
 ✅
 ✅ Recommended Approach
 
-#_____________________________________________________
-
