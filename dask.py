@@ -1,37 +1,53 @@
 import dask.dataframe as dd
-from dask.distributed import Client
-import os
+from dask.distributed import Client, LocalCluster
 
-# Connect to a local Dask cluster (modify if you're using a remote scheduler)
-client = Client()  # Or Client("scheduler-address:port") if remote
+# --- Configuration ---
+S3_INPUT_PATH = "s3://your-input-bucket/path/to/data/"
+S3_OUTPUT_PATH = "s3://your-output-bucket/path/to/partitioned-data/"
+PARTITION_COLUMN = "your_partition_column"  # Replace with a real column like 'date', 'region', etc.
+
+# --- Cluster Configuration ---
+# Tune these based on your instance's hardware
+N_WORKERS = 12
+THREADS_PER_WORKER = 4
+MEMORY_PER_WORKER = "30GB"  # Adjust based on your instance total RAM
+
+# Launch local Dask cluster
+cluster = LocalCluster(
+    n_workers=N_WORKERS,
+    threads_per_worker=THREADS_PER_WORKER,
+    memory_limit=MEMORY_PER_WORKER,
+    dashboard_address=":8787",  # Makes dashboard accessible on port 8787
+)
+client = Client(cluster)
+
+print("Dask Cluster is running:")
 print(client)
 
-# S3 paths
-input_path = "s3://your-input-bucket/path/to/data/"
-output_path = "s3://your-output-bucket/path/to/partitioned-data/"
+# --- Load the Data from S3 ---
+df = dd.read_parquet(
+    S3_INPUT_PATH,
+    engine="pyarrow",  # or "fastparquet"
+    storage_options={"anon": False}
+)
 
-# Load data from S3
-# Adjust `blocksize` for CSV/JSON if needed; Parquet handles it efficiently
-df = dd.read_parquet(input_path, storage_options={"anon": False})
+print(f"Loaded dataset with {df.npartitions} partitions")
 
-# Optional: Inspect the dataset
-print("Initial Dask dataframe:")
-print(df)
-
-# Partitioning column (change this to your actual column name)
-partition_column = 'your_partition_column'  # e.g. 'date' or 'region'
-
-# Repartition if needed (e.g., 2000 partitions, or by row count)
+# --- Repartition (optional but recommended) ---
+# Choose based on memory/compute — too few = OOM, too many = overhead
 df = df.repartition(npartitions=2000)
 
-# Write back to S3 as partitioned Parquet
+# Optional: Persist in memory before writing
+df = df.persist()
+
+# --- Write back to S3 in partitioned Parquet format ---
 df.to_parquet(
-    output_path,
-    engine="pyarrow",  # or "fastparquet"
+    S3_OUTPUT_PATH,
+    engine="pyarrow",
+    partition_on=[PARTITION_COLUMN],
     write_index=False,
-    partition_on=[partition_column],
     storage_options={"anon": False},
     overwrite=True
 )
 
-print(f"Data successfully written to {output_path}")
+print(f"✅ Data written to {S3_OUTPUT_PATH}")
