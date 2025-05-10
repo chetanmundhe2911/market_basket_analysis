@@ -12,7 +12,7 @@ PARTITION_COLUMN = "day"
 # Allow overrides via environment variables (useful for EMR or ECS)
 N_WORKERS = int(os.getenv("DASK_WORKERS", 24))
 THREADS_PER_WORKER = int(os.getenv("DASK_THREADS", 4))
-MEMORY_PER_WORKER = os.getenv("DASK_MEMORY", "30GB")
+MEMORY_PER_WORKER = os.getenv("DASK_MEMORY", "15GB")
 
 # --- Start Local Dask Cluster ---
 cluster = LocalCluster(
