@@ -60,3 +60,11 @@ ifelse(
 
 #------------------------------
 
+
+
+ifelse(
+  ${MetricToDisplay} = 'Unique Users'
+  AND distinct_count(ifelse({Organization_CP} = 'CrossPlay', {nr_sbsc_hash_pii}, NULL)) > 15,
+  {CPSelectedMetricField},
+  NULL
+)
