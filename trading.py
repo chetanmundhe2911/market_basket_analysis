@@ -29,6 +29,8 @@ t = time("1", "0600-1100")  // 6PM to 11PM
 bgcolor(t ? color.new(color.blue, 85) : na)
 
   
-?----
+#------
+@123
+
 
 
