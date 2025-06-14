@@ -56,5 +56,20 @@ ddf = ddf.map_partitions(assign_h3_index)
 # Group by H3 index and aggregate values
 agg_df = ddf.groupby('h3_index')['value'].sum().compute()
 
+#-------------------(Optional) Convert H3 Cell to Polygon for Plotting-----------------------------------------
+
+from shapely.geometry import Polygon
+import geopandas as gpd
+
+# Convert H3 index to polygon
+def h3_to_polygon(h3_index):
+    boundary = h3.h3_to_geo_boundary(h3_index, geo_json=True)
+    return Polygon(boundary)
+
+agg_df = agg_df.reset_index()
+agg_df['geometry'] = agg_df['h3_index'].apply(h3_to_polygon)
+
+gdf = gpd.GeoDataFrame(agg_df, geometry='geometry', crs='EPSG:4326')
+
 
 
