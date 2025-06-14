@@ -40,6 +40,17 @@ data = pd.DataFrame({
 # Convert to Dask DataFrame
 ddf = dd.from_pandas(data, npartitions=2)
 
+#---------------------------------------------------------
+
+def assign_h3_index(df, resolution=9):
+    df['h3_index'] = df.apply(
+        lambda row: h3.geo_to_h3(row['lat'], row['lon'], resolution),
+        axis=1
+    )
+    return df
+
+# Apply H3 encoding on each partition
+ddf = ddf.map_partitions(assign_h3_index)
 
 
 
