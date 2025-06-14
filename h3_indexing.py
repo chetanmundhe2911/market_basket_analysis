@@ -52,5 +52,9 @@ def assign_h3_index(df, resolution=9):
 # Apply H3 encoding on each partition
 ddf = ddf.map_partitions(assign_h3_index)
 
+#------------------------------------------------------------------
+# Group by H3 index and aggregate values
+agg_df = ddf.groupby('h3_index')['value'].sum().compute()
+
 
 
