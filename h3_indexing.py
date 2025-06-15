@@ -71,5 +71,27 @@ agg_df['geometry'] = agg_df['h3_index'].apply(h3_to_polygon)
 
 gdf = gpd.GeoDataFrame(agg_df, geometry='geometry', crs='EPSG:4326')
 
+-----------------------------For every subscriber's (lat, lon), find the nearest school (among 4,700 schools) using the Haversine distance in a scalable way with Dask.----------------------------------
+import dask.dataframe as dd
+import pandas as pd
+
+# Assume df_schools is small, so convert it to pandas
+df_schools = pd.read_csv('schools.csv')  # or any other loading method
+df_schools['key'] = 1  # dummy key for cross join
+
+# Your large Dask subscriber data
+df_subs = dd.read_parquet('subscriber.parquet')  # or any source
+df_subs['key'] = 1
+
+# Do cross join
+df_cross = df_subs.merge(df_schools, on='key', suffixes=('_sub', '_school'))
+
+df_cross['distance_km'] = haversine_np(
+    df_cross['lat_sub'], df_cross['lon_sub'],
+    df_cross['school_lat'], df_cross['school_lon']
+)
+
+
+
 
 
