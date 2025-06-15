@@ -94,9 +94,12 @@ df_cross['distance_km'] = haversine_np(
 
 # Each imsi+timestamp will have multiple rows (one per school). Find the one with min distance.
 min_idx = df_cross.groupby(['imsi', 'timestamp'])['distance_km'].idxmin()
-
+# ------------------------------------------------------------------------------------------------------
 # Fetch those rows
 df_nearest = df_cross.loc[min_idx].compute()
 
 
+| imsi       | timestamp  | lat\_sub | lon\_sub | nearest\_school\_id | distance\_km |
+| ---------- | ---------- | -------- | -------- | ------------------- | ------------ |
+| 1234567890 | 2025-06-14 | 18.45    | 77.54    | SCL\_1023           | 0.85 km      |
 
