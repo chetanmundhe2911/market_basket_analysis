@@ -46,5 +46,3 @@ result = grouped.compute()
 print("\nComputed Result:")
 print(result)
 
-;l
-
