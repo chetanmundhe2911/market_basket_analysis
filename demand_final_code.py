@@ -6,7 +6,7 @@ from scipy.stats import shapiro, ttest_ind, mannwhitneyu
 import warnings
 warnings.filterwarnings("ignore")
 
-# ---------------------
+# -----------------------
 # 📌 Configurable Input
 # ---------------------
 
