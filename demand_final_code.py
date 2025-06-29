@@ -75,7 +75,7 @@ print(f"Mean (School)  : {school.mean():.2f}")
 print(f"Mean (Holiday) : {holiday.mean():.2f}")
 print(f"Cohen's d      : {cohens_d:.2f}")
 
-# ---------------------
+# ------------------------
 # 🔹 Step 7: Visualization
 # ---------------------
 sns.boxplot(x='period_type', y='call_volume', data=df_daily[df_daily['period_type'].isin(['school', 'holiday'])])
