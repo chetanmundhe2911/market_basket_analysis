@@ -39,7 +39,7 @@ Clicking on this should work without needing to port forward.
 Use the Dask Dashboard Pane in JupyterLab
 There should be a Dask icon in the left pane (after installing dask-labextension). You can see task streams, progress bars, etc., directly within JupyterLab.
 
-🔁 If You Must Use Port Forwarding (Not Recommended, But Possible)
+
 If you're running Dask in a SageMaker Studio Kernel App (or notebook instance) and want to expose the dashboard port:
 
 SSH/port-forwarding is not directly supported in SageMaker Studio, so you'd need to have a workaround, such as:
