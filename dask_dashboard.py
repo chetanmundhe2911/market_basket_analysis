@@ -47,16 +47,7 @@ Using EC2 (not SageMaker)
 Or setting up an SSH tunnel via SageMaker notebook instance (not Studio)
 However , for SageMaker Studio, direct port forwarding (as in port 8787) does not work easily due to its way of routing traffic through the Jupyter server kernel gateway. Use the Jupyter Lab Extensions instead.
 
-✅ Summary
-Direct Dashboard (localhost:8787)
-❌
-Not available
-Port forwarding to 8787
-🚫 Likely blocked
-Not reliable
-dask-labextension
-+ JupyterLab
-✅
+
 
 #--------
 
