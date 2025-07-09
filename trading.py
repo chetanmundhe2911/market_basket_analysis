@@ -28,9 +28,11 @@ t = time("1", "0600-1100")  // 6PM to 11PM
 // Plot background highlight
 bgcolor(t ? color.new(color.blue, 85) : na)
 
+
+
   
 #---
-#----
+#------
 
 
 
