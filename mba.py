@@ -34,4 +34,4 @@ frequent_itemsets = fpgrowth(df, min_support=0.05, use_colnames=True)
 # Chech Support, Confidence and other Metrics by Itemsets
 rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
 
-#----
+#-------
