@@ -102,6 +102,6 @@ plt.tight_layout()
 plt.show()
 
 # Step 9: Stop Spark Session
-# Stop the Spark session once all processing is done---------
+# Stop the Spark session once all processing is done---
 spark.stop()
 print("Spark session stopped.")
