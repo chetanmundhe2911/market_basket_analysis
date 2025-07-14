@@ -1,5 +1,5 @@
 # Install necessary libraries before running:
-# pip install pyspark mlflow pandas scikit-learn matplotlib seaborn
+# pip install pyspark mlflow pandas scikit-learn matplotlib
 
 # Import necessary modules
 from pyspark.sql import SparkSession
