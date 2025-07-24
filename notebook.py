@@ -31,7 +31,7 @@ df_table1 = pd.DataFrame(table1_data)
 df_table2 = pd.DataFrame(table2_data)
 df_table3 = pd.DataFrame(table3_data)
 
-# Combine all DataFrames into one
+# Combine all DataFrames into 
 transactions_df = pd.concat([df_table1, df_table2, df_table3], ignore_index=True)
 
 # Save combined transaction data (optional)
