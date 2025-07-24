@@ -101,7 +101,7 @@ plt.legend(title="Lift", bbox_to_anchor=(1.05, 1), loc="upper left")
 plt.tight_layout()
 plt.show()
 
-# Step 9: Stop Spark 
+# Step 9: Stop
 # Stop the Spark session once all processing is done---
 spark.stop()
 print("Spark session stopped.")
