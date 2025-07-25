@@ -1,8 +1,8 @@
-kind: project
 spec:
-  source: git://github.com/chetanmundhe2911/market_basket_analysis.git#refs/heads/main
   origin_url: git://github.com/chetanmundhe2911/market_basket_analysis.git#refs/heads/main
+  source: git://github.com/chetanmundhe2911/market_basket_analysis.git#refs/heads/main
   desired_state: online
   conda: ''
 metadata:
   name: basket-project
+kind: project

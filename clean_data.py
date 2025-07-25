@@ -1,23 +1,26 @@
 import mlrun
 import pandas as pd
+import datetime
 
 def clean_online_retail(context, raw_data: mlrun.DataItem):
-    # Load CSV
+    # Load raw data
     df = raw_data.as_df()
 
     # Drop rows with missing values
-    df_clean = df.dropna()
+    df.dropna(inplace=True)
 
-    # Filter out canceled orders (InvoiceNo starts with 'C')
-    df_clean = df_clean[~df_clean['InvoiceNo'].astype(str).str.startswith('C')]
+    # Drop canceled orders (InvoiceNo starting with 'C')
+    df = df[~df['InvoiceNo'].astype(str).str.startswith('C')]
 
-    # Log how many rows were cleaned
-    context.log_result("original_rows", len(df))
-    context.log_result("cleaned_rows", len(df_clean))
+    # Strip whitespaces from descriptions
+    df['Description'] = df['Description'].str.strip()
 
-    # Save cleaned dataset
-    cleaned_path = "cleaned_retail.csv"
-    df_clean.to_csv(cleaned_path, index=False)
+    # Generate timestamped filename
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_filename = f"cleaned_data_{timestamp}.csv"
 
-    # Log as artifact
-    context.log_artifact("cleaned_dataset", local_path=cleaned_path)
+    # ✅ Save cleaned data to CSV
+    df.to_csv(output_filename, index=False)
+
+    # ✅ Log the artifact after saving
+    context.log_artifact(output_filename, local_path=output_filename)
