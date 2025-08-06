@@ -79,3 +79,6 @@ try:
     print(f"✅ Successfully written day-partitioned data to {S3_OUTPUT_PATH}")
 except Exception as e:
     raise RuntimeError(f"❌ Failed to write data to S3: {e}")
+
+
+#----
