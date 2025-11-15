@@ -29,4 +29,4 @@ def train_model(context, data: mlrun.DataItem, label_column: str = "label"):
     context.log_model("rf_model", body_path=model_file, model_file=model_file,
                       framework="sklearn", labels={"type": "classifier"})
 
-#---------------------------------------
+#------------------------------------
