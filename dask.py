@@ -6,8 +6,7 @@ S3_INPUT_PATH = "s3://your-input-bucket/path/to/data/"
 S3_OUTPUT_PATH = "s3://your-output-bucket/path/to/partitioned-data/"
 PARTITION_COLUMN = "your_partition_column"  # Replace with a real column like 'date', 'region', etc.
 
-# --- Cluster Configuration ---
-# Tune these based on your instance's hardware
+# --- Cluster Configuration ---these based on your instance's hardware
 N_WORKERS = 12
 THREADS_PER_WORKER = 4
 MEMORY_PER_WORKER = "30GB"  # Adjust based on your instance total RAM
