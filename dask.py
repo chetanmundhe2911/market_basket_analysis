@@ -40,8 +40,7 @@ df = df.repartition(npartitions=2000)
 # Optional: Persist in memory before writing
 df = df.persist()
 
-# --- Write back to S3 in partitioned Parquet format ---
-df.to_parquet(
+# --- Write back to S3 in partitioned P
     S3_OUTPUT_PATH,
     engine="pyarrow",
     partition_on=[PARTITION_COLUMN],
