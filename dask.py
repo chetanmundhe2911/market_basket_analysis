@@ -9,7 +9,7 @@ PARTITION_COLUMN = "your_partition_column"  # Replace with a real column like 'd
 # --- Cluster Configuration ---these based on your instance's hardware
 N_WORKERS = 12
 THREADS_PER_WORKER = 4
-MEMORY_PER_WORKER = "30GB"  # Adjust based on your instance total RAM
+MEMORY_PER_WORKER = "30GB"  # Adjust ba
 
 # Launch local Dask cluster
 cluster = LocalCluster(
