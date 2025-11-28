@@ -25,7 +25,7 @@ python
 from dask.distributed import Client, LocalCluster
 ```
 
-# Create a local cluster with dashboard on port 8787
+# Create a local cluster with dashboard on port 
 cluster = LocalCluster()
 client = Client(cluster)
 
